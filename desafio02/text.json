@@ -1,0 +1,14 @@
+[
+  {
+    "nombre": "buzo clara",
+    "precio": 3500,
+    "img": "./buzo.jpeg",
+    "id": 2
+  },
+  {
+    "nombre": "buzo clara",
+    "precio": 3500,
+    "img": "./buzo.jpeg",
+    "id": 3
+  }
+]
