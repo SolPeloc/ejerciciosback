@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 
 const arr = require("./text.js")
-
+app.use(express.json()) //formatea la data que venga por el body, a json//
 // endpoint que devuelva el array //
 app.get("/",(req,res)=>{
     res.send({
@@ -26,9 +26,20 @@ let arrayNew =arr.filter((prod)=>{     //filtro el array y le digo q me devuelva
 })
 //endpoint que reciba info POST//
 app.post("/",(req,res)=>{
+ let prodnuevo = {
+    "nombre": req.body.nombre,
+    "precio": req.body.precio,
+    "img": req.body.img,
+    "id" :  Math.random ()                       //le asigno un id random o id: (arrNew.length +1//
+ }
 
-    console.log(req.body)                           //con body capturo la info q me quieren pasar para guardar//
-     res.send("hola posts")
+    arr.push(prodnuevo)                                     //aca agrego el nuevo producto al array//
+    console.log(req.body)                       //con body capturo la info q me quieren pasar para guardar//
+     res.send({
+         mensaje : "producto agregado y guardado",
+         data : prodnuevo,
+     })
+
 })
 
 
