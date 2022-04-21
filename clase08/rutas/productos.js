@@ -3,13 +3,14 @@ const express = require("express")
 const {Router} = express //desestructuro express
 
 let router = new Router() //router es un constructor, lo instancio//
-const arr = require("./data")
+const arr = []
 router.use(express.json()) //formatea el objeto a json//
 router.get("/productos",(req,res)=>{
+
         res.send({
-        mensaje:"aca estan los productos",
+       mensaje:"aca estan los productos",
         data : arr
-        })
+       })
     })
 
 router.get("/productos/:id",(req,res)=>{
@@ -51,16 +52,27 @@ router.post("/productosnuevos",(req,res)=>{
 })
 
 router.put("/productos/:id",(req,res)=>{
-  
-
+  let {id} = req.body
+  let prodmod =  arr.find(el=>el.id == req.params.id)
+ let prodmodificado = {
+        id: prodmod
+ }
+  arr.push(prodmodificado)
+      res.send({
+        mensaje:"producto modificado",
+        data : prodmodificado
+      })
 })
-//router.delete("/productos/:id",(req,res)=>{
-  // let  prod = arr.filter(el =>{
-    //  return   el.id !== id
+router.delete("/productos/:id",(req,res)=>{
+  let  prod = arr.filter(el =>{
+       el.id == req.params.id
                 
-     //   })
-      //  res.send(prod)
-      // console.log(prod)
-//})
+       })
+        res.send({
+          mensaje:"producto eliminado",
+          data : req.params.id
+        })
+     
+})
 
 module.exports = router // exporto router, el que crea las rutas y las guarda//
