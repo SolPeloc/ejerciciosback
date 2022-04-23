@@ -6,11 +6,10 @@ let router = new Router() //router es un constructor, lo instancio//
 const arr = []
 router.use(express.json()) //formatea el objeto a json//
 router.get("/productos",(req,res)=>{
-
-        res.send({
-       mensaje:"aca estan los productos",
-        data : arr
-       })
+          res.send({
+        mensaje:"aca estan los productos",
+          data : arr
+        })
     })
 
 router.get("/productos/:id",(req,res)=>{
