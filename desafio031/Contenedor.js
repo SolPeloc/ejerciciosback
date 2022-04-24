@@ -57,15 +57,15 @@ const fs = require("fs")
             })
     }
         getAll(){
-            fs.readFile(`./${this.nombre}`, "utf-8",(err,data) =>{
-                if(err){
-                    return "error en la lectura"
-                }else{
-                 console.log(JSON.parse(data))
-                }
-                
-            })
-        }
+            try{
+            let data = fs.readFileSync(`./${this.nombre}`, "utf-8")
+            return JSON.parse(data)
+            } catch (err) {
+                        return "error en la lectura"
+                    }
+                    
+            }
+            
      deleteById(id){
         fs.readFile(`./${this.nombre}`, "utf-8",(err,data) =>{
                 if(err){
@@ -101,7 +101,7 @@ const fs = require("fs")
 
  }
 
- let archivos = new Contenedor("text.json")
+ //let archivos = new Contenedor("text.json")
  module.exports = Contenedor
  //archivos.save({
   //  
