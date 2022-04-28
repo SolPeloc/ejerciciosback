@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("templates/head") %> <!-- aca estoy trayendo el template head -->
+<body>
+    <h1>hola <%= titulo %> a ejs</h1> <!-- asi uso la variable titulo-->
+   
+      <h4> todos los productos</h4>
+        <ul>
+            <% data.forEach(function(producto){  %>
+            <li> <%= producto.nombre %> :  <%= producto.precio %> - <%= producto.img %> -  <%= producto.id %></li>
+
+            <% }) %>
+        </ul>
+
+ <button> <a href="/formulario">agregar productos</a> </button> 
+</body>
+</html>

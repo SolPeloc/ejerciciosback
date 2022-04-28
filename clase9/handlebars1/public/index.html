@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    
+  <div id="contenedor">
+
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script type="text/x-handlebars-template" id="template">
+<h1>{{titulo}}</h1>
+</script>
+
+<script>
+    const scriptHTML = document.querySelector("#template").innerHTML
+    let template = Handlebars.compile(scriptHTML);
+    let html = template({titulo: "hola mundo"});
+    console.log(html);
+    const contenedor = document.querySelector("#contenedor") //capturo el contenedo en el div//
+    contenedor.innerHTML = html               //entrar en el html que cree
+</script>
+</body>
+</html>

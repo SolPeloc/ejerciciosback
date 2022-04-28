@@ -59,9 +59,9 @@ router.put("/productos/:id",(req,res)=>{
   if(prodmod ==undefined){
     res.send("producto no encontrado") 
   }else{
-    prodmod.nombre                                 //Esta parte no entendi//
-    prodmod.precio
-    prodmod.img
+    prodmod.nombre = nombre                                //Esta parte no entendi//
+    prodmod.precio = precio
+    prodmod.img =  img
     res.send({
       mensaje:`producto id ${req.params.id} modificado`,
       data:prodmod
