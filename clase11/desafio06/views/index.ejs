@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("templates/head") %>
+<body>
+    <div class="container"> 
+        <h3>formulario</h3>
+        <form action="/api/" method="post" class="col-md-8 col-lg-6 col-xl-5 justify-content-center align-items-center">
+        <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+        <input type="text" name="nombre"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">precio</label>
+        <input type="text" name="precio" class="form-control" id="exampleInputPassword1">
+        </div>
+           <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">img</label>
+            <input type="text" name="img" class="form-control" id="exampleInputPassword1">
+            </div>
+       
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+ 
+          <h4>CHAT</h4>
+          <div>
+            <form onsubmit="">  <!-- aca ejecuta la funcion addinfo-->
+               <input type="text" name="" id="nb" placeholder="nombre">
+               <input type="text" name="" id="msn" placeholder="mensaje">
+               <input type="submit" value="enviar">
+            </form>
+        </div>
+     <script src="/socket.io/socket.io.js"></script> <!--linkeo socket-->
+
+     
+    <script>
+          const socket = io()    //aca abro un canal de coneccion desde el front//
+          
+          socket.on("mensaje_back",(data)=>{     // aca con on, va a escuchar, el mensaje del back, le pasamos el nombre del mensaje, y la data es el mensaje//
+          console.log(data)
+           }) 
+         socket.emit("mensaje_cliente","gracias por la conexion") //aca le estoy enviando mensaje al back, desde el front//   
+        socket.on("crearproducto",(data)=>{           //aca estoy escuchando el 2do mensaje, con la data de los productos
+          console.log(data)
+        
+      })     
+            
+
+
+
+
+    </script>
+</body>
+</html>

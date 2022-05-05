@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>CHAT</h2>
+    <div>
+        <form onsubmit="return addInfo()">  <!-- aca ejecuta la funcion addinfo-->
+           <input type="text" name="" id="nb" placeholder="nombre">
+           <input type="text" name="" id="msn" placeholder="mensaje">
+           <input type="submit" value="enviar">
+        </form>
+    </div>
+    <!--aca se renderiza los mensajes-->
+    <div id="caja">
+
+    </div>
+
+
+    <script src="/socket.io/socket.io.js"></script> <!--linkeo socket-->
+    <script src="./index.js"></script> <!-- linkeo el js--> 
+</body>
+</html>

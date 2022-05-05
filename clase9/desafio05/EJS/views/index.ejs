@@ -5,12 +5,26 @@
     <h1>hola <%= titulo %> a ejs</h1> <!-- asi uso la variable titulo-->
    
       <h4> todos los productos</h4>
-        <ul>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Imagen</th>
+          </tr>
+        </thead>
+        <tbody>
             <% data.forEach(function(producto){  %>
-            <li> <%= producto.nombre %> :  <%= producto.precio %> - <%= producto.img %> -  <%= producto.id %></li>
-
-            <% }) %>
-        </ul>
+          <tr>
+            <th scope="row"><%= producto.id %></th>
+            <td><%= producto.nombre %></td>
+            <td><%= producto.precio %></td>
+            <td> <img src="<%= producto.img %>" width="150"/></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
 
  <button> <a href="/formulario">agregar productos</a> </button> 
 </body>

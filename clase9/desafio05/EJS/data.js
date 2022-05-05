@@ -2,7 +2,7 @@ module.exports =[
     {
       "nombre": "buzo clara",
       "precio": 3500,
-      "img": "./buzo.jpeg",
+      "img": "./mujer-buzo.png",
       "id": 1
     },
     {
@@ -12,7 +12,7 @@ module.exports =[
       "id": 2
     },
     {
-      "nombre": "remera clo",
+      "nombre": "gorro sara",
       "precio": 3500,
       "img": "./remera.jpeg",
       "id": 3

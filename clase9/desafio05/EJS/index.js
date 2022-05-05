@@ -4,7 +4,7 @@ const arr = require("./data") //traigo el array//
 app.listen(8080,()=>{
     console.log("server corriendo")
 })
-
+app.use(express.static("/public")) //para que sepa la ubicacion los archivos estaticos//
 app.set("view engine","ejs")  //plantilla//
 app.set("views","./views")   //carpeta y ruta//
 app.use(express.json()) //formatea la data a json//
@@ -13,6 +13,7 @@ app.use(express.urlencoded({extended:false}))           //formatea la url
 //enpoint para obtener productos del servidor//
 app.get("/",(req,res)=>{
     res.render("index",{titulo:"bienvenidos",data : arr}) //le paso tmb, una variable y data//
+    //res.sendFile(__dirname+"/public/media")
 })
 //enpoint para guardar los productos en el server//
 app.post("/",(req,res)=>{
