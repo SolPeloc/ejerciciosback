@@ -21,8 +21,31 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
+          <div>
+            <h4> todos los productos</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Imagen</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% data.forEach(function(producto){  %>
+                <tr>
+                  <th scope="row"><%= producto.id %></th>
+                  <td><%= producto.nombre %></td>
+                  <td><%= producto.precio %></td>
+                  <td> <img src="<%= producto.img %>" width="150"/></td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
 
- 
+          </div>
+
           <h4>CHAT</h4>
           <div>
             <form onsubmit="">  <!-- aca ejecuta la funcion addinfo-->
@@ -37,11 +60,11 @@
     <script>
           const socket = io()    //aca abro un canal de coneccion desde el front//
           
-          socket.on("mensaje_back",(data)=>{     // aca con on, va a escuchar, el mensaje del back, le pasamos el nombre del mensaje, y la data es el mensaje//
+          socket.on("mensaje_back",( data )=>{     // aca con on, va a escuchar, el mensaje del back, le pasamos el nombre del mensaje, y la data es el mensaje//
           console.log(data)
            }) 
          socket.emit("mensaje_cliente","gracias por la conexion") //aca le estoy enviando mensaje al back, desde el front//   
-        socket.on("crearproducto",(data)=>{           //aca estoy escuchando el 2do mensaje, con la data de los productos
+        socket.on("dataproductos",(data)=>{           //aca estoy escuchando el 2do mensaje, con la data de los productos
           console.log(data)
         
       })     

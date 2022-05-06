@@ -20,7 +20,6 @@ const fs = require("fs")
         fs.writeFile(`./${this.nombre}`, JSON.stringify(array, null, 2), "utf-8", (err) => err && console.log(err));
         
        
-        
         return obj.id;
         
         })
@@ -33,8 +32,8 @@ const fs = require("fs")
         
         fs.writeFile(`./${this.nombre}`, JSON.stringify([obj], null, 2), "utf-8", err => err && console.log(err))
        
-        
-        return obj.id;
+       
+       return obj.id;
         
         }
         
@@ -95,9 +94,7 @@ const fs = require("fs")
           
 
      }
-      addProd(){
-          
-      }
+      
    
 
  }
