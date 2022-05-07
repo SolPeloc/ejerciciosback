@@ -3,27 +3,27 @@
     <%- include("templates/head") %>
 <body>
     <div class="container"> 
-        <h3>formulario</h3>
-        <form action="/api/" method="post" class="col-md-8 col-lg-6 col-xl-5 justify-content-center align-items-center">
+        <h3>Ingreso de productos</h3>
+        <form onsubmit="return agregarInfo()"action="/api/" method="post" class="col-md-8 col-lg-6 col-xl-5 justify-content-center align-items-center">
         <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Nombre</label>
-        <input type="text" name="nombre"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="text" name="nombre"class="form-control" id="nombre" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">precio</label>
-        <input type="text" name="precio" class="form-control" id="exampleInputPassword1">
+        <input type="text" name="precio" class="form-control" id="precio">
         </div>
            <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">img</label>
-            <input type="text" name="img" class="form-control" id="exampleInputPassword1">
+            <input type="text" name="img" class="form-control" id="img">
             </div>
        
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
-          <div>
+          <div class="col">
             <h4> todos los productos</h4>
-            <table class="table">
+            <table class="table" >
               <thead>
                 <tr>
                   <th scope="col">Id</th>
@@ -32,43 +32,87 @@
                   <th scope="col">Imagen</th>
                 </tr>
               </thead>
-              <tbody>
-                  <% data.forEach(function(producto){  %>
-                <tr>
-                  <th scope="row"><%= producto.id %></th>
-                  <td><%= producto.nombre %></td>
-                  <td><%= producto.precio %></td>
-                  <td> <img src="<%= producto.img %>" width="150"/></td>
-                </tr>
-                <% }) %>
+              <tbody id="listaproductos"> 
               </tbody>
             </table>
-
           </div>
-
+      
           <h4>CHAT</h4>
-          <div>
-            <form onsubmit="">  <!-- aca ejecuta la funcion addinfo-->
+          <div class="col mr-3">
+            <form onsubmit="return agregarMSN()">  <!-- aca ejecuta la funcion addinfo-->
                <input type="text" name="" id="nb" placeholder="nombre">
                <input type="text" name="" id="msn" placeholder="mensaje">
                <input type="submit" value="enviar">
             </form>
+        </div>
+        <div id="caja"  class="mr-3">
+
         </div>
      <script src="/socket.io/socket.io.js"></script> <!--linkeo socket-->
 
      
     <script>
           const socket = io()    //aca abro un canal de coneccion desde el front//
-          
           socket.on("mensaje_back",( data )=>{     // aca con on, va a escuchar, el mensaje del back, le pasamos el nombre del mensaje, y la data es el mensaje//
           console.log(data)
            }) 
          socket.emit("mensaje_cliente","gracias por la conexion") //aca le estoy enviando mensaje al back, desde el front//   
-        socket.on("dataproductos",(data)=>{           //aca estoy escuchando el 2do mensaje, con la data de los productos
-          console.log(data)
-        
-      })     
-            
+       
+          socket.on("dataproductos",(data)=>{           //aca estoy escuchando el 2do mensaje, con la data de los productos//
+          
+          render(data)
+        })  
+        //funcion que me renderiza la data y la pinta en una tabla los productos//
+        const render =  (data) =>{
+            let html = data.map((p)=>{
+              return `<tr>
+                      <th scope="row"> ${p.id} </th>
+                      <td> ${p.nombre} </td>
+                      <td> ${p.precio} </td>
+                      <td> <img src=${p.img}" width="150"/></td>
+                    </tr>`
+            }).join(" ") 
+     
+         document.querySelector("#listaproductos").innerHTML = html //tomo el id de la tabla a pintar
+        }
+
+        // funcion que toma los valores del form de productos//
+      const agregarInfo = () =>{
+        let dataobj ={
+          nombre :document.querySelector("#nombre").value,
+          precio : document.querySelector("#precio").value,
+          img : document.querySelector("#img").value
+        }
+        socket.emit("agregarproductos",(dataobj)) //le envio al back, los valores del form
+      }
+       //CHAT//
+   
+       const renderMSN = (data)=>{
+          let html= data.map((e)=>{          //lo guardo en una variable//
+              return `
+              <p><strong>${e.nombre} </strong> : ${e.mensaje} </p>      
+              `                                          //parrafos a renderizar//
+          }).join(" ")    //lo convierte en strings separados//
+
+          document.querySelector("#caja").innerHTML = html             //selecciono el id del div en el html y//
+        } 
+                                                               //el inner hable la caja y lo igualo a lo que quiero renderizar//
+
+         socket.on("mensajes",(data)=>{           
+           console.log(data)
+           renderMSN(data)
+         })
+
+         const agregarMSN = () =>{
+            let msn = {
+              nombre : document.querySelector("#nb").value,
+              mensaje : document.querySelector("#msn").value
+            }
+            socket.emit("nuevomensaje",(msn))
+          }
+          
+           
+             
 
 
 

@@ -1,29 +1,24 @@
 // constructor de rutas//
 const express = require("express")
-const data = require("../../../clase9/desafio05/EJS/data")
+
 const {Router} = express      
 const router = new Router()
 
-const arr = [] //array donde se va a almacenar los productos
 
-///enpoint para obtener productos del servidor//
+///enpoint para obtener data del servidor//
 router.get("/",(req, res)=>{ 
-res.render("index.ejs",{data : arr})
+res.render("index.ejs")
 
 console.log(req.body)
 })
 
 
 
-//enpoint para guardar los productos en el server//
+//enpoint para guardar los datos en el server//
 router.post("/",(req,res)=>{
-     res.render("index.ejs",{data : arr})
-  
+     res.render("index.ejs")
      console.log(req.body)
      
-
-
-
 })
 
 

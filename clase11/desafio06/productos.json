@@ -1,0 +1,26 @@
+[
+  {
+    "nombre": "remera",
+    "precio": "50",
+    "img": "remera.jpge",
+    "id": 1
+  },
+  {
+    "nombre": "camisa",
+    "precio": "6000",
+    "img": "camisa.jpeg",
+    "id": 2
+  },
+  {
+    "nombre": "remera",
+    "precio": "500000",
+    "img": "remera.jpge",
+    "id": 3
+  },
+  {
+    "nombre": "jean",
+    "precio": "5000",
+    "img": "jean.pgn",
+    "id": 4
+  }
+]
