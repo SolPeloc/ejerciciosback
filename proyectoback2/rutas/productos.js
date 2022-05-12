@@ -33,7 +33,7 @@ router.get("/productos/:id",(req,res)=>{
 
 
 router.post("/productos",(req,res)=>{            //se usa la misma ruta tanto para traer como para enviar//
-      if(req.query.admin){
+      
         let {nombre,precio,img,id} = req.body          //puedo sino desestructurar al req.body
         let prodnuevo = {
             nombre,
@@ -44,13 +44,8 @@ router.post("/productos",(req,res)=>{            //se usa la misma ruta tanto pa
             arr.push(prodnuevo)                                     //aca agrego el nuevo producto al array//
             console.log(req.body) 
             res.render("productos",{data : arr})                      //con body capturo la info q me quieren pasar para guardar//
-            //res.send({
-               // mensaje : "producto agregado y guardado",
-               // data : prodnuevo,
-           // })
-      }else{
-        res.send("usted no esta autorizado")
-      }
+           
+      
 
      
 })
