@@ -4,22 +4,16 @@ const express = require("express")
 const {Router} = express      
 const router = new Router()
 
-//let arr = require("./data") //traigo el array externo//
 router.use(express.json()) //formatea el objeto a json//
 router.use(express.urlencoded({extended:false}))
 router.use(express.static("public"))
-
-
+const arr = require("../data")
 
 router.get("/productos",(req,res)=>{
-    res.send({mensaje:"hola"})
-      // res.send({
-       // mensaje:"aca estan los productos",
-         // data : arr
-       // })
-       // res.sendFile("public/productos.html",{root:"."})
-        
-      // res.
+  
+   console.log(req.body)
+    res.render("productos", {data : arr})
+      
     })
 
 router.get("/productos/:id",(req,res)=>{
@@ -39,8 +33,8 @@ router.get("/productos/:id",(req,res)=>{
 
 
 router.post("/productos",(req,res)=>{            //se usa la misma ruta tanto para traer como para enviar//
-      
-      let {nombre,precio,img,id} = req.body          //puedo sino desestructurar al req.body
+      if(req.query.admin){
+        let {nombre,precio,img,id} = req.body          //puedo sino desestructurar al req.body
         let prodnuevo = {
             nombre,
             precio,
@@ -48,11 +42,17 @@ router.post("/productos",(req,res)=>{            //se usa la misma ruta tanto pa
             id: arr.length + 1                     //le asigno un id random o id: (arr.length +1//
         }
             arr.push(prodnuevo)                                     //aca agrego el nuevo producto al array//
-            console.log(req.body)                       //con body capturo la info q me quieren pasar para guardar//
-            res.send({
-                mensaje : "producto agregado y guardado",
-                data : prodnuevo,
-            })
+            console.log(req.body) 
+            res.render("productos",{data : arr})                      //con body capturo la info q me quieren pasar para guardar//
+            //res.send({
+               // mensaje : "producto agregado y guardado",
+               // data : prodnuevo,
+           // })
+      }else{
+        res.send("usted no esta autorizado")
+      }
+
+     
 })
 
 router.put("/productos/:id",(req,res)=>{

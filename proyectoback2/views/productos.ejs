@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("templates/head") %> <!-- aca estoy trayendo el template head -->
+<body>
+    
+    <div> 
+          <div>
+              <h3>todos los productos</h3>
+          </div>
+          <div>
+            <% data.forEach(function(p){  %>
+            <div class="card productoEstilo " style="width: 18rem;">
+                <img src="<%= p.img %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><%= p.nombre %></h5>
+                    <p class="card-text "><%= p.precio %></p>
+                    <p class="card-text "><%= p.id %></p>
+                    <button> </button>
+                </div>
+                <% }); %>
+            </div>
+
+
+
+
+          </div>
+      <!--  <button> <a href="/formulario">agregar  otro producto</a></button>
+        <button> <a href="/">ver productos</a></button>--> 
+    </div>
+</body>
+</html>
