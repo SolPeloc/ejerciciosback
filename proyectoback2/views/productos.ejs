@@ -15,17 +15,15 @@
                     <h5 class="card-title"><%= p.nombre %></h5>
                     <p class="card-text "><%= p.precio %></p>
                     <p class="card-text "><%= p.id %></p>
-                    <button class="btn btn-secondary">agregar al carrito</button>
+                    <button class="btn btn-secondary"><a href="/carrito/:id/productos/idcarrito">agregar a carrito</a></button>
+
                 </div>
                 <% }); %>
             </div>
 
-
-
-
           </div>
-      <!--  <button> <a href="/formulario">agregar  otro producto</a></button>
-        <button> <a href="/">ver productos</a></button>--> 
+    
     </div>
+    
 </body>
 </html>

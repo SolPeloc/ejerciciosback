@@ -12,45 +12,62 @@ let carrito = require("../cart")
 //Me permite listar todos los productos guardados en el carrito
 
 router.get("/carrito",(req,res)=>{
+  
     res.render("index.ejs",{root : ".", data : carrito})
 
-    
+    console.log(data)
  })
-//leo los productos
+//creacion de carrito
 router.post("/carrito",(req,res)=>{
+ 
+  res.render("index.ejs",{root : ".", data : carrito})
 
-
-    res.render("productos",{data : arr})
 
 
 })
-//Para incorporar productos al carrito por su id de producto
+//Para incorporar productos al carrito por su id de producto y id carrito
 
-router.post("/carrito/:id/productos",(req,res)=>{
-   
-   let objselec = arr.find(e =>{
-       return e.id === req.params.id
-   })
-   arr.push(objselec)
+router.post("/carrito/:id/productos/:idcarrito",(req,res)=>{
 
-   let cartSelec = arr.find((x)=>{
-       return x.id === req.params.id
-   })
-  cartSelec.productos.push(objselec)
+  let id = req.params.id               //guardo variable en id
+  let prodSelec =arr.find((prod)=>{     //filtro el array y le digo q me devuelva un array con solo objeto, todo en un nuevo array//
+      return prod.id == id
+      })
+      console.log(prodSelec)
+
+      let carritoSelect = carrito.find((x)=>{
+        return x.id === req.params.id
+      })
+     carritoSelect.productos.push(prodSelec) //pusheeo el producto al array de la prop carrito
+     carritoSelect = carrito
+      console.log(carrito)
+      res.render("index.ejs",{data : carrito}) //aca le estoy devolviendo el objeto unico del nuevo array 
+  })
+
+router.get("/carrito/:id/productos/:idcarrito",(req,res)=>{
+  let id = req.params.id               
+  let arrayNew =arr.filter((prod)=>{     
+      return prod.id == id
+      })
+      console.log(arrayNew)
+      arr = arrayNew
+
+
+
+  res.render("index.ejs",{data : carrito})
+
 })
 
 
-
-
-//Vacía un carrito y lo elimina
+//Vacía un carrito por id y lo elimina
 router.delete("/carrito/:id",(req,res)=>{
-  let  arraynuevo = arr.filter((i) =>{
+  let  arraynuevo = carrito.filter((i) =>{
     return   i.id != req.params.id   
         }) 
-        arr = arraynuevo
+        carrito= arraynuevo
           res.send({
-            mensaje:"producto eliminado",
-            data: arr})
+            mensaje:"carrito eliminado",
+            data: carrito})
 
      
 
