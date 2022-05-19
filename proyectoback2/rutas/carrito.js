@@ -9,6 +9,8 @@ router.use(express.urlencoded({extended:false}))
 router.use(express.static("public"))
 let arr = require("../data")
 let carrito = require("../cart")
+const contCarrito = require("../Contenedores/carrito")
+const carritoApi = new contCarrito("carrito.json")
 //Me permite listar todos los productos guardados en el carrito
 
 router.get("/carrito",(req,res)=>{
