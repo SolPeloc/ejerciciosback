@@ -1,0 +1,38 @@
+[
+  {
+    "nombre": "camison",
+    "precio": 2000,
+    "img": "camison.jpeg",
+    "descripcion": " algodón puro",
+    "stock": 10,
+    "date": "28/05/2022 09:51:23",
+    "id": 1
+  },
+  {
+    "nombre": "remera",
+    "precio": 1500,
+    "img": "remera.jpeg",
+    "descripcion": " algodón puro",
+    "stock": 10,
+    "date": "28/05/2022 09:52:56",
+    "id": 2
+  },
+  {
+    "nombre": "campera",
+    "precio": 5000,
+    "img": "campera.jpeg",
+    "descripcion": " rompeviento",
+    "stock": 10,
+    "date": "28/05/2022 09:53:28",
+    "id": 3
+  },
+  {
+    "nombre": "jean",
+    "precio": 8000,
+    "img": "jean.jpeg",
+    "descripcion": " tipo oxford",
+    "stock": 15,
+    "date": "28/05/2022 09:54:17",
+    "id": 4
+  }
+]

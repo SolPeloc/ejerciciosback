@@ -1,11 +1,12 @@
 const fs = require("fs")
 
- class Contenedor{
+ class Carrito{
     constructor(nombre){
         this.nombre = nombre
+       // this.productos = require("../productos.json")
         
     }
-    save(object) {
+    crearCarrito(object) {
 
         fs.promises.readFile(`./${this.nombre}`, "utf-8")
         
@@ -13,14 +14,14 @@ const fs = require("fs")
         
         const array = JSON.parse(data)
         
-        const obj = {...object, id: array.length + 1 }
+        const nuevoCarrito = {...object, id: array.length + 1}
         
-        array.push(obj)
+        array.push(nuevoCarrito)
         
         fs.writeFile(`./${this.nombre}`, JSON.stringify(array, null, 2), "utf-8", (err) => err && console.log(err));
         
        
-        return obj.id;
+        return nuevoCarrito;
         
         })
         
@@ -28,12 +29,12 @@ const fs = require("fs")
         
         if (err) {
         
-        const obj = { ...object, id: 1 };
+        const nuevoCarrito = { ...object, id: 1};
         
-        fs.writeFile(`./${this.nombre}`, JSON.stringify([obj], null, 2), "utf-8", err => err && console.log(err))
+        fs.writeFile(`./${this.nombre}`, JSON.stringify([nuevoCarrito], null, 2), "utf-8", err => err && console.log(err))
        
        
-       return obj.id;
+       return nuevoCarrito;
         
         }
         
@@ -45,12 +46,12 @@ const fs = require("fs")
 
             fs.readFile(`./${this.nombre}`, "utf-8",(err,data) =>{
                 if(err){
-                    return "error toma de id"
+                    return "error toma de id carrito"
                 }else{
-                    let  prod = JSON.parse(data).find(x =>{
+                    let  carrito = JSON.parse(data).find(x =>{
                         return x.id == id
                         })
-                    console.log(prod) 
+                    console.log(carrito) 
                 }
             })
     }
@@ -64,17 +65,19 @@ const fs = require("fs")
                     
             }
             
+
+            
      deleteById(id){
         fs.readFile(`./${this.nombre}`, "utf-8",(err,data) =>{
                 if(err){
-                    return "error toma de id a borrar"
+                    return "error toma de id carrito a borrar"
                 }else{
-                        let  prod = JSON.parse(data).filter(el =>{
+                        let  carrito = JSON.parse(data).filter(el =>{
                     return el.id !== id
                             
                     })
-                    console.log(prod)
-                    fs.writeFile(`./${this.nombre}`, JSON.stringify(prod, null, 2),"utf-8", (err) => err && console.log(err));
+                    console.log(carrito)
+                    fs.writeFile(`./${this.nombre}`, JSON.stringify(carrito, null, 2),"utf-8", (err) => err && console.log(err));
 
 
                 }
@@ -91,6 +94,9 @@ const fs = require("fs")
                 console.log("se borro correctamente")
             }
         })
+
+
+        
           
 
      }
@@ -99,4 +105,4 @@ const fs = require("fs")
 
  }
  
- module.exports = Contenedor
+ module.exports = Carrito

@@ -1,0 +1,52 @@
+[
+  {
+    "nombre": "remera clara",
+    "precio": 100,
+    "img": "remera.jpge",
+  },
+  {
+    "nombre": "camisa charo",
+    "precio": 2000,
+    "img": "camisa.jpeg",
+  },
+  {
+    "nombre": "buzo su",
+    "precio": 2500,
+    "img": "remera.jpge",
+  },
+  {
+    "nombre": "jean montana",
+    "precio": 5000,
+    "img": "jean.png",
+  },
+  {
+    "nombre": "pantalon mud",
+    "precio": 3200,
+    "img": "pantalon.png",
+  },
+  {
+    "nombre": "campera cintia",
+    "precio": 4990,
+    "img": "campera.png",
+  },
+  {
+    "nombre": "medias barton",
+    "precio": 900,
+    "img": "medias.png",
+  },
+  {
+    "nombre": "calza ro",
+    "precio": 1700,
+    "img": "calza.png",
+  },
+  {
+    "nombre": "gorro mirta",
+    "precio": 600,
+    "img": "gorro.pgn",
+  },
+  {
+    "nombre": "sombrero sale",
+    "precio": 2860,
+    "img": "jean.pgn",
+  }
+]

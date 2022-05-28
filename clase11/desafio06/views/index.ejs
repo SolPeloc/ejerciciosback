@@ -90,7 +90,7 @@
        const renderMSN = (data)=>{
           let html= data.map((e)=>{          //lo guardo en una variable//
               return `
-              <p><strong>${e.nombre} </strong> : ${e.mensaje} </p>      
+              <p><strong>${e.nombre} </strong> [<label style="color:#A52A2A;">${e.date}<label> ]: ${e.mensaje} </p>      
               `                                          //parrafos a renderizar//
           }).join(" ")    //lo convierte en strings separados//
 
@@ -107,6 +107,7 @@
             let msn = {
               nombre : document.querySelector("#nb").value,
               mensaje : document.querySelector("#msn").value
+            
             }
             socket.emit("nuevomensaje",(msn))
           }

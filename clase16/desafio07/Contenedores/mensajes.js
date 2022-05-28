@@ -41,18 +41,17 @@ const fs = require("fs")
         
         }
 
-  async  getById(id){
+    getById(id){
 
             fs.readFile(`./${this.nombre}`, "utf-8",(err,data) =>{
                 if(err){
                     return "error toma de id"
-               }else{
-                   let  prod = JSON.parse(data).find(x =>{
-                       return x.id == id
-                 })
-                 console.log(prod)
+                }else{
+                    let  prod = JSON.parse(data).find(x =>{
+                        return x.id == id
+                        })
+                    console.log(prod) 
                 }
-               
             })
     }
         getAll(){

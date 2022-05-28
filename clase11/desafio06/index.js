@@ -47,8 +47,8 @@ socket.on("mensaje_cliente",(data)=>{  //escucha mensaje del front por la conecc
     socket.emit("mensajes",mensajes)          //envio de mensajes al front
     socket.on("nuevomensaje",(data)=>{
         data.date = moment().format("DD/MM/YYYY HH:mm:ss") //esto no se como aplicarlo//
-        let {nombre,mensaje} = data 
-        let nuevomsn = {nombre, mensaje}
+        let {nombre,mensaje,date} = data 
+        let nuevomsn = {nombre, mensaje,date}
         mensajeApi.save(nuevomsn)
         mensajes = mensajeApi.getAll()
         io.sockets.emit("mensajes",mensajes)

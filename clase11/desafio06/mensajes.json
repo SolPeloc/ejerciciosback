@@ -2,36 +2,61 @@
   {
     "nombre": "sol",
     "mensaje": "hola",
+    "date": "22/05/2022 12:26:24",
     "id": 1
   },
   {
     "nombre": "bel",
-    "mensaje": "hola",
+    "mensaje": "hola sol como estas?",
+    "date": "22/05/2022 12:26:44",
     "id": 2
   },
   {
     "nombre": "sol",
-    "mensaje": "como estas?",
+    "mensaje": "bien y vos?",
+    "date": "22/05/2022 12:26:54",
     "id": 3
   },
   {
     "nombre": "bel",
-    "mensaje": "re bien",
+    "mensaje": "yo excelente, disfrutando el día",
+    "date": "22/05/2022 12:27:11",
     "id": 4
   },
   {
     "nombre": "sol",
-    "mensaje": "re bien",
+    "mensaje": "genial, si, esta  muy cálido el día",
+    "date": "22/05/2022 12:27:29",
     "id": 5
   },
   {
     "nombre": "bel",
-    "mensaje": "ggggg",
+    "mensaje": "queremos que salgamos a merendar?",
+    "date": "22/05/2022 12:27:44",
     "id": 6
   },
   {
     "nombre": "sol",
-    "mensaje": "chau",
+    "mensaje": "sii, dale, tipo 17 te parece?",
+    "date": "22/05/2022 12:27:57",
     "id": 7
+  },
+  {
+    "nombre": "bel",
+    "mensaje": "sisi, vamos a gratitude?",
+    "date": "22/05/2022 12:28:11",
+    "id": 8
+  },
+  {
+    "nombre": "sol",
+    "mensaje": "ree, es lo mas",
+    "date": "22/05/2022 12:28:23",
+    "id": 9
+  },
+  {
+    "nombre": "bel",
+    "mensaje": "joya, nos encontramos en la puerta",
+    "date": "22/05/2022 12:28:37",
+    "id": 10
   }
 ]

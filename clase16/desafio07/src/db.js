@@ -18,6 +18,7 @@ knex.schema.createTableIfNotExists("productos",function(table){
   table.string("precio") 
   table.string("descripcion")
   table.string("img")
+  
 }) // aca creo una tabla siempre y cuando no exista con los campos que quiera, si existe, no tengo q crear esto//
 .then(()=>{
   console.log("conexion y tabla productos creada")
