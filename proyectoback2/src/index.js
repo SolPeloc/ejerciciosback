@@ -1,11 +1,13 @@
-const express = require("express")
+//const express = require("express")
+import express from "express"
+import {prodrouter as productosrutas} from "../rutas/productos.js"
+import {carrrouter as carritorutas} from "../rutas/carrito.js"
 const app = express()
 const PORT = process.env.PORT || 8080 //para que cuando este en la nube eliga entre los dos
 app.listen(PORT,()=>{
     console.log("server corriendo " + PORT)
 })
-const productosrutas = require("../rutas/productos") //traigo el fichero de ruta productos//
-const carritorutas = require("../rutas/carrito")  //traigo el fichero de ruta carrito//
+
 
 
 app.use("/api/",productosrutas)         //metodo, que se ejecuta antes de entrar a todo funcionamiento de mi aplicacion//
@@ -21,9 +23,8 @@ app.set("views","./views")   //carpeta y ruta//
 app.use(express.json()) //formatea la data a json//
 app.use(express.urlencoded({extended:false}))           //formatea la url//
 
-require ("../src/Contenedores/mongo/configmongo")//traigo la coneccion con mongo
-require("../src/Contenedores/firebase/configfirebase")//traigo coneccion fs
-const isAdmin = require("../src/Contenedores/admin")
+
+import {isAdmin} from "../src/Contenedores/admin.js"
 
 app.get("/",(req,res)=>{
    // res.render("home" )    

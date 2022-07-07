@@ -1,22 +1,24 @@
-const mongoose = require("mongoose")//traigo la dependencia//
-mongoose.connect("mongodb://localhost:27017/ecommerce")            //con este método, puedo poner la url del entorno de mdb y la db, que yo voy a conectar
-
+//import {Db} from "mongodb"
+import mongoose  from "mongoose"//traigo la dependencia//
+    
+import config from "../../config.js" //traigo la conf de db
+ await mongoose.connect(config.mongodb.conne)
 //verificación de conección//
-mongoose.connection.on("open",()=>{
-    console.log("base de datos conectada con exito")
-})
-mongoose.connection.on("error",()=>{
-    console.log("error al conectarse a la db")
-})
+//mongoose.connection.on("open",()=>{
+  //  console.log("base de datos conectada con exito")
+//})
+//mongoose.connection.on("error",()=>{
+   // console.log("error al conectarse a la db")
+//})
 
 
 
-class Mongodb {
+class MongodbContainer {
     constructor(nombre, esquema){
         this.coleccion = mongoose.model(nombre,esquema)
     }
 
-    async save(object){
+    async saveItem(object){
       try { 
           let docNew = await this.coleccion.create(object)
          return docNew
@@ -32,8 +34,8 @@ class Mongodb {
 
    async   getAll(){
        try { 
-           let docs =   await this.coleccion.find()
-           return docs
+           await this.coleccion.find()
+          
 
         }catch (error) {
             throw Error(`Error al traer todos ${error}`)
@@ -47,7 +49,7 @@ class Mongodb {
 
    async getById(id){
 
-   try {  let doc =    await  this.coleccion.findOne({_id :id})
+   try {  let doc =    await  this.coleccion.findOne({_id : id})
        return doc
 
     }catch (error) {
@@ -84,7 +86,7 @@ async deleteAll () {
   }
  //este no se como hacerlo//
    
- async update (element){
+ async updateItem (element){
     let docMod = await this.coleccion.replaceOne({_id : id},{})
     return docMod
   }
@@ -93,3 +95,4 @@ async deleteAll () {
 
 
 }
+export default MongodbContainer

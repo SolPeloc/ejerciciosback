@@ -1,11 +1,14 @@
-const Contenedor = require("../Contenedores/fs/filesystem")
-const moment = require("moment")
+//const Contenedor = require("../Contenedores/fs/filesystem")
+
+import Contenedor from "../Contenedores/fs/filesystem"
+import moment from "moment"
+//const moment = require("moment")
 
 const prodapi = new Contenedor("productos.json")
 
 const saveprod = (req,res) =>{
 
-let newprod = {
+const newprod = {
   nombre : req.body.nombre,
   precio : req.body.precio,
   img : req.body.img,
@@ -13,7 +16,7 @@ let newprod = {
   stock : req.body.stock,
   date : moment().format("DD/MM/YYYY HH:mm:ss")
 }
-prodapi.save(newprod).then(response => res.json(response)).catch(err => err && { err: 'ocurrio un error!' })
+prodapi.save(newprod).then(response => res.send(response)).catch(err => err && { err: 'ocurrio un error!' })
 
 }
 

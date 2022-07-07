@@ -33,6 +33,5 @@ logs
 *.sql
 **/node_modules
 
- google-services.json
 
-.env
+

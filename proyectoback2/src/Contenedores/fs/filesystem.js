@@ -127,4 +127,4 @@ const fs = require('fs');
     }
 
 }
-module.exports = Contenedor
+//module.exports = Contenedor

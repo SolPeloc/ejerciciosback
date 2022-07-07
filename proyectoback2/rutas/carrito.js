@@ -1,84 +1,60 @@
-const express = require("express")
-
+ 
+import express from "express"
 const {Router} = express //desestructuro express
 
-let carritorouter = new Router() //router es un constructor, lo instancio//
-carritorouter.use(express.json()) //formatea el objeto a json//
-carritorouter.use(express.urlencoded({extended:false}))
-carritorouter.use(express.static("public"))
-const moment = require("moment")
+const carrrouter = new Router() //router es un constructor, lo instancio//
+carrrouter.use(express.json()) //formatea el objeto a json//
+carrrouter.use(express.urlencoded({extended:false}))
+carrrouter.use(express.static("public"))
+import { carritosDao as carritoApi } from "../src/daos/index.js"
+
+//const moment = require("moment")
 
 //Me permite listar todos los productos guardados en el carrito
 
-carritorouter.get("/carrito",(req,res)=>{
- // let  carritos = carritoApi.getAll()
-    
+carrrouter.get("/carrito",async(req,res)=>{
+   await carritoApi.getAll()
     })
 //creacion de carrito
-carritorouter.post("/carrito",(req,res)=>{
-  let nuevoCarrito = {
-    date : moment().format("DD/MM/YYYY HH:mm:ss"),
-    productos : []
-  }
-  carritoApi.crearCarrito(nuevoCarrito)
+carrrouter.post("/carrito",async(req,res)=>{
+ await carritoApi.saveItem()
 })
-
-//Para incorporar productos al carrito por su id de producto y id carrito
-
-carritorouter.post("/carrito/:id/productos/:idcarrito",(req,res)=>{
-
- // let id = req.params.id               //guardo variable en id
- // let prodSelec =arr.find((prod)=>{     //filtro el array y le digo q me devuelva un array con solo objeto, todo en un nuevo array//
-    //  return prod.id == id
-     // })
-     // console.log(prodSelec)
-
-     // let carritoSelect = carrito.find((x)=>{
-      //  return x.id === req.params.id
-     // })
-     //carritoSelect.productos.push(prodSelec) //pusheeo el producto al array de la prop carrito
-     //carritoSelect = carrito
-     // console.log(carrito)
-     
-  })
-
-carritorouter.get("/carrito/:id/productos/:idcarrito",(req,res)=>{
-  //let id = req.params.id               
- // let arrayNew =arr.filter((prod)=>{     
-   //   return prod.id == id
-    //  })
-    //  console.log(arrayNew)
-    //  arr = arrayNew
-
-
-
- // res.render("index.ejs",{data : carrito})
-
-})
-
 
 //Vacía un carrito por id y lo elimina
-carritorouter.delete("/carrito/:id",(req,res)=>{
-  carritoApi.deleteById(req.params.id)
-  res.send({
-     
+carrrouter.delete("/carrito/:id",async(req,res)=>{
+  await carritoApi.delete(req.params.id)
+ 
+})
+//Para incorporar productos al carrito por su id de producto y id carrito
+
+carrrouter.post("/carrito/:id/productos",async(req,res)=>{
+  const carrito = await carritoApi.getById(req.params.id)
+  const producto = await productoApi.getById(req.body.id)
+  carrito.productos.push(producto)
+  await carritoApi.updateItem(carrito)
+  res.end()
+ 
   })
-  //let  arraynuevo = carrito.filter((i) =>{
-   // return   i.id != req.params.id   
-     //   }) 
-      //  carrito= arraynuevo
-         // res.send({
-         //   mensaje:"carrito eliminado",
-        //    data: carrito})
 
-     
+  carrrouter.get("/carrito/:id/productos",async(req,res)=>{
+    const carrito = await carritoApi.getById(req.params.id)
+    res.json(carrito.productos)
 
 })
+
+
+/
 //Eliminar un producto del carrito por su id de carrito y de producto
-carritorouter.delete("/carrito/:id/productos/:id_prod",(req,res)=>{
-
+carrrouter.delete("/carrito/:id/productos/:idProd",async(req,res)=>{
+  const carrito = await carritoApi.getAll(req.params.id)
+  const index = carrito.productos.findIndex(p => p.id == req.params.idProd)
+  if (index != -1) {
+      carrito.productos.splice(index, 1)
+      await carritoApi.updateItem(carrito)
+  }
+  res.end()
 })
 
 
 
-module.exports = carritorouter // exporto router, el que crea las rutas y las guarda//
+export {carrrouter} // exporto router, el que crea las rutas y las guarda//
